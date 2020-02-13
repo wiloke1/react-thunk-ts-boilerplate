@@ -1,9 +1,9 @@
 import { getTodolist } from '../actions/actionTodolist';
 import Axios, { AxiosResponse } from 'axios';
 import { TodolistItem } from 'api/Todolist';
-import { createDispatchAction, ActionTypes } from 'utils/functions/reduxActions';
+import { createDispatchAction } from 'utils/functions/reduxActions';
 
-type ThunkTodolistAction = ThunkAction<Promise<void>, ActionTypes<typeof getTodolist>>;
+type ThunkTodolistAction = ThunkAction<typeof getTodolist>;
 
 export const thunkTodolist = (endpoint: string): ThunkTodolistAction => async dispatch => {
   dispatch(getTodolist.request(null));
