@@ -1,23 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode, CSSProperties } from 'react';
+import styles from './Button.module.scss';
 
 interface Props {
-  children: React.ReactNode;
-  className: string;
-  style: React.CSSProperties;
+  children: ReactNode;
+  style: CSSProperties;
 }
 
-type DefaultProps = Pick<Props, 'style' | 'className'>;
+type DefaultProps = Pick<Props, 'style'>;
 
 export default class Button extends Component<Props> {
   static defaultProps: DefaultProps = {
     style: {},
-    className: '',
   };
 
   render() {
-    const { children, className, style } = this.props;
+    const { children, style } = this.props;
+
     return (
-      <div className={className} style={style}>
+      <div className={styles.container} style={style}>
         <button>{children}</button>
       </div>
     );
