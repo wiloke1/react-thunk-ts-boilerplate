@@ -15,12 +15,20 @@ const axiosConfig: AxiosRequestConfig = {
 
 const fetchAPI = axios.create(axiosConfig);
 
-export function setAuthToken(token: string) {
-  fetchAPI.defaults.headers.common.Authorization = `Bearer ${token}`;
-}
+fetchAPI.interceptors.request.use(config => {
+  if (!config?.url) {
+    return config;
+  }
 
-export const deleteAuthToken = () => {
-  delete fetchAPI.defaults.headers.common.Authorization;
-};
+  const isAppURL = config.url.search(/^http/g) === -1;
+  if (isAppURL && !config.headers.Authorization) {
+    // const token = localStorage or redux persists state
+    // if (!!token) {
+    //   config.headers.Authorization = `Bearer ${token}`;
+    // }
+  }
+
+  return config;
+});
 
 export default fetchAPI;
