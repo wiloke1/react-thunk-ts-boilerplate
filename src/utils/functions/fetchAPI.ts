@@ -1,19 +1,26 @@
-import axios, { AxiosRequestConfig, AxiosPromise } from 'axios';
-import { CANCEL } from 'redux-saga';
+import axios, { AxiosRequestConfig } from 'axios';
+import qs from 'qs';
 import configureApp from 'configureApp.json';
 
-axios.defaults.baseURL = configureApp.baseUrl;
-axios.defaults.timeout = configureApp.timeout;
-
 const { CancelToken } = axios;
+const source = CancelToken.source();
 
-export default function fetchAPI<T>(config: AxiosRequestConfig): AxiosPromise<T> {
-  const source = CancelToken.source();
-  const request: any = axios({
-    ...config,
-    cancelToken: source.token,
-  });
-  request[CANCEL] = source.cancel;
+const axiosConfig: AxiosRequestConfig = {
+  method: 'GET',
+  baseURL: configureApp.baseUrl,
+  timeout: configureApp.timeout,
+  cancelToken: source.token,
+  paramsSerializer: qs.stringify,
+};
 
-  return request;
+const fetchAPI = axios.create(axiosConfig);
+
+export function setAuthToken(token: string) {
+  fetchAPI.defaults.headers.common.Authorization = `Bearer ${token}`;
 }
+
+export const deleteAuthToken = () => {
+  delete fetchAPI.defaults.headers.common.Authorization;
+};
+
+export default fetchAPI;
