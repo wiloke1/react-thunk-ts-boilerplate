@@ -1,16 +1,6 @@
 import React, { Component } from 'react';
-import { thunkTodolist } from 'containers/HomePage/thunks/thunkTodolist';
-import { connect, ConnectedProps } from 'react-redux';
-
-const mapState = (state: AppState) => ({
-  todolist: state.todolist,
-});
-
-const mapDispatch = {
-  getTodolistRequest: thunkTodolist,
-};
-
-const connector = connect(mapState, mapDispatch);
+import { ConnectedProps } from 'react-redux';
+import connector from './connector';
 
 export interface AboutPageProps extends ConnectedProps<typeof connector> {}
 
