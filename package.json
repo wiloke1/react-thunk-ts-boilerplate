@@ -17,12 +17,8 @@
     "release": "func() { yarn test-all && zip -r ${npm_package_name}-build.zip build && release-it \"$1\" && rm ${npm_package_name}-build.zip; }; func"
   },
   "lint-staged": {
-    "*.{js,jsx}": [
+    "*.{ts,tsx}": [
       "yarn eslint",
-      "git add"
-    ],
-    "{*.json,.{babelrc,eslintrc,prettierrc}}": [
-      "prettier --ignore-path .eslintignore --parser json --write",
       "git add"
     ],
     "*.{test.ts,test.tsx}": [
