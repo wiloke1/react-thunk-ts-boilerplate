@@ -1,10 +1,10 @@
+import configureApp from 'configureApp.json';
 import React from 'react';
 import { Provider } from 'react-redux';
 import axios from 'axios';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import { store, persistor } from './configureStore';
 import Routes from 'routes';
-import configureApp from 'configureApp.json';
+import { store, persistor } from './configureStore';
 
 axios.defaults.baseURL = configureApp.baseUrl;
 axios.defaults.timeout = configureApp.timeout;
