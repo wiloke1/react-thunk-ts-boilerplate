@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import HomePage from 'pages/HomePage/HomePage';
-import AboutPage from 'pages/AboutPage/AboutPage';
-import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
+import HomePage from 'containers/HomePage/HomePage';
+import AboutPage from 'containers/AboutPage/AboutPage';
+import NotFoundPage from 'containers/NotFoundPage/NotFoundPage';
 
 const Routes = () => {
   return (

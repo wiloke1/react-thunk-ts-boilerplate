@@ -1,8 +1,8 @@
-import { getTodolist } from '../actions/actionTodolist';
 import { AxiosResponse } from 'axios';
-import { TodolistItem } from 'api/Todolist';
+import { TodolistItem } from 'types/api/Todolist';
 import { createDispatchAction } from 'utils/functions/reduxActions';
 import fetchAPI from 'utils/functions/fetchAPI';
+import { getTodolist } from '../actions/actionTodolist';
 
 type ThunkTodolistAction = ThunkAction<typeof getTodolist>;
 
